@@ -22,6 +22,46 @@
 
 
 
+### Data Input and Output
+
+
+
+#### Input / Output Manipulators
+
+
+
+|                         std::Keyword                         | Manipulators                                                 | Library |
+| :----------------------------------------------------------: | :----------------------------------------------------------- | :-----: |
+|                  boolalpha and  noboolalpha                  | switches between textual and numeric representation of booleans (function) |         |
+|                   showbase and  noshowbase                   | controls whether prefix is used to indicate numeric base (function) |         |
+|                  showpoint and noshowpoint                   | controls whether decimal point is always included in floating-point representation (function) |         |
+|                    showpos and noshowpos                     | controls whether the `+` sign used with non-negative numbers (function) |         |
+|                     skipws and noskipws                      | controls whether leading whitespace is skipped on input (function) |         |
+|                  uppercase and nouppercase                   | controls whether uppercase characters are used with some output formats (function) |         |
+|                    unitbuf and nounitbuf                     | controls whether output is flushed after each operation (function) |         |
+|                 internal and left and right                  | sets the placement of fill characters (function)             |         |
+|                     dec and hex and oct                      | changes the base used for integer I/O (function)             |         |
+| fixed and scientific and hexfloat (C++11)  and defaultfloat (C++11) | changes formatting used for floating-point I/O (function)    |         |
+|                              ws                              | consumes whitespace (function template)                      |         |
+|                             ends                             | outputs '**\0**' (function template)                         |         |
+|                            flush                             | flushes the output stream (function template)                |         |
+|                             endl                             | outputs '**\n**' and flushes the output stream (function template) |         |
+|          emit_on_flush and noemit_on_flush (C++20)           | controls whether a stream's basic_syncbuf emits on flush (function template) |         |
+|                      flush_emit (C++20)                      | flushes a stream and emits the content if it is using a basic_syncbuf (function template) |         |
+|                        resetiosflags]                        | clears the specified ios_base flags (function)               |         |
+|                         setiosflags                          | sets the specified ios_base flags (function)                 |         |
+|                           setbase                            | changes the base used for integer I/O (function)             |         |
+|                           setfill                            | changes the fill character (function template)               |         |
+|                         setprecision                         | changes floating-point precision (function)                  |         |
+|                             setw                             | changes the width of the next input/output field (function)  |         |
+|                      get_money (C++11)                       | parses a monetary value (function template)                  |         |
+|                      put_money (C++11)                       | formats and outputs a monetary value (function template)     |         |
+|                       get_time (C++11)                       | parses a date/time value of specified format (function template) |         |
+|                       put_time (C++11)                       | formats and outputs a date/time value according to the specified format (function template) |         |
+|                        quoted (C++14)                        | inserts and extracts quo                                     |         |
+
+
+
 ## Variables and Data Type 
 
 - **Variables :** A named piece of memory that use to store specific types of data.
@@ -638,7 +678,1008 @@ int main()
 */
 ```
 
-## Operation on Data
+### Variable Lifetime
+
+The period of time in which a variable is alive in memory. It becomes alive when you declare it and it is killed (wiped out) from memory at some point.
+
+1. Local Duration: dies at the end of the block
+2. Static Duration: dies at the end of the program 
+3. Dynamic Duration: you decide when it dies
+
+### Variable Scope
+
+A region in your code where a variable name can be mentioned. You may be reading from it, writing into it, basically using it in any conceivable way.
+
+> Trying to use a variable out of it’s scope will result in a compiler error.     
+
+1. Global Variable: it's a variable with global scope, meaning that it is visible throughout the program.
+2. Local Variable:  it's a variable that is given local scope. Local variable references in the function or block in which it is declared override the same variable name in the larger scope.
+
+![Difference-Between-Local-and-Global-Variable-Comparison-Summary (1)](image\Difference-Between-Local-and-Global-Variable-Comparison-Summary (1).jpg)
+
+## Operations on Data
+
+### Basic Operations
+
+|  Operation  | Symbol | Operands |   Example   |
+| :---------: | :----: | :------: | :---------: |
+|  Addition   |   +    |    2     | 5 + 26 = 31 |
+| Subtraction |   -    |    2     | 36 - 5 = 31 |
+|  Multiply   |   *    |    2     | 6 * 5 = 30  |
+|  Division   |   /    |    2     | 31 / 10 = 3 |
+|   Modulus   |   %    |    2     | 31 % 10 = 1 |
+
+### Increment and Decrement
+
+| Operation | Symbol | Operands |  Example   |
+| :-------: | :----: | :------: | :--------: |
+| Increment |   ++   |    1     | X++ or ++X |
+| Decrement |   --   |    1     | Y-- or --Y |
+
+> Prefix vs. Postfix.
+>
+> ![Difference between postfix and prefix](/image/Difference-Between-Prefix-and-Postfix-Comparison-Summary.jpg)
+>
+> ![value of  postfix and prefix](/image/postfix-and-prefix-operators.jpg)
+
+### Assignment Operators 
+
+|   Operation    | Symbol | Operands | Example |
+| :------------: | :----: | :------: | :-----: |
+|   sum equal    |   +=   |    2     | A  += 5 |
+| subtract equal |   -=   |    2     | B -= 5  |
+| multiply equal |   *=   |    2     | C *= 5  |
+|  divide equal  |   /=   |    2     | D /= 5  |
+| modulus equal  |   %=   |    2     | E %= 5  |
+
+### Relational Operators 
+
+|      Operation       | Symbol | Operands | Example |
+| :------------------: | :----: | :------: | :-----: |
+|      less than       |   <    |    2     |  X < Y  |
+|  less than or equal  |   <=   |    2     | X <= Y  |
+|     bigger than      |   >    |    2     |  X > Y  |
+| bigger than or equal |   >=   |    2     | X >= Y  |
+|        equal         |   ==   |    2     | X == Y  |
+|      not equal       |   !=   |    2     | X != Y  |
+
+> return Booleans value (**true** or **false**).
+
+### Logical Operator
+
+| Operation | Symbol | Operands | Example  |
+| :-------: | :----: | :------: | :------: |
+|    AND    |   &&   |    2     |  X && Y  |
+|    OR     |  \|\|  |    2     | X \|\| Y |
+|    NOT    |   !    |    1     | !X or !Y |
+
+### Ternary Operators
+
+The conditional operator is kind of similar to the if-else statement as it does follow the same algorithm as of if-else statement but the conditional operator takes less space and helps to write the if-else statements in the shortest way possible.
+
+```c++
+variable = (Expression1) ? Expression2 : Expression3
+```
+
+![Ternary operator-in-c](image\Ternary operator-in-c.png)
+
+> all Expressions must be can compared (same data type).
+
+### Comma Operator
+
+- The comma operator (represented by the token `,`) is a binary operator that evaluates its first operand and discards the result, it then evaluates the second operand and returns this value (and type). The comma operator has the lowest precedence of any C operator, and acts as a sequence point. 
+- Comma acts as a separator when used with function calls and definitions, function like macros, variable declarations, enum declarations, and similar constructs.
+-  We know that in C and C++, every statement is terminated with a semicolon but comma operator also used to terminate the statement after satisfying the following rules. 
+  1. The variable declaration statements must be terminated with semicolon.
+  2. The statements after declaration statement can be terminated by comma operator.
+  3. The last statement of the program must be terminated by semicolon.
+
+### Precedence and Associativity
+
+![precedence](/image/precedence.PNG)
+
+## Control Flow
+
+Control flow is the order in which individual statements, instructions or function calls of an imperative program are executed or evaluated.
+
+### if Statement
+
+```c++
+// use for testing one condition 
+if (condition)
+{
+    // Code if the condition is true 
+}
+else 
+{
+    // Code if the condition is false
+}
+```
+
+> - Condition return true or false only
+> - True conditions: is any number different than 0, or expression evaluating to something other than 0 
+> - False conditions: is any number equal to 0, or expression evaluating to 0
+
+### else if Statement
+
+```c++
+// use for testing multiple conditions 
+if (condition 1)
+{
+    // Code if the condition 1 is true 
+}
+else if (condition 2)
+{
+    // Code if the condition 2 is true 
+}
+else if (condition 3)
+{
+    // Code if the condition 3 is true 
+}
+else 
+{
+    // Code if the three conditions is false
+}
+```
+
+ ### switch Statement 
+
+```c++
+// use for testing several different conditions
+switch (condition)
+{
+    case A:
+        // code if the variable match with case A
+    break ; 
+    case B:
+        // code if the variable match with case B
+    break ;  
+    case C:
+        // code if the variable match with case C
+    break ; 
+    default:
+        // code if the variable not matching with any case
+    break ;
+}
+```
+
+> if the **break** isn't existed after the **case** is finished, the program will continue to the next **case** until finding a **break** or end of the **switch** statement  
+
+### Short Circuit Evaluation 
+
+Short-circuiting is a programming concept by which the compiler skips the execution or evaluation of some sub-expressions in a logical expression. The compiler stops evaluating the further sub-expressions as soon as the value of the expression is determined.
+
+```c++
+int main()
+{
+    int a = 10;
+    int b = -1;
+  
+    // Here b == -1 is not evaluated as
+    // a != 10 is false
+    if (a != 10 && b == -1) {
+        printf("I won't be printed!\n");
+    }
+    else {
+        printf("Hello, else block is printed");
+    }
+    
+    a = 0;
+    // myfunc(b) will not be called
+    if (a != 0 && myfunc(b)) {
+        // do_something();
+    }
+    
+    a = 15;
+    // Here since a is 10, calculate_sqrt
+    // function will be called
+    if (a >= 10 && calculate_sqrt(a)) {
+        printf("I will be printed!\n");
+    }
+  
+    return 0;
+}
+```
+
+### if constexpr
+
+a C++17 feature which allows conditionally compiling code based on template parameters in a clear and minimal fashion.
+
+ ```c++
+ constexpr bool condition {false} ; 
+ if constexpr (condition)
+ {
+     // Code if the condition is true 
+ }
+ else 
+ {
+     // Code if the condition is false
+ }
+ ```
+
+> condition must be constexpr or exist before compile time 
+
+### if with Initializer 
+
+a C++17 has extended existing if statement’s syntax. Now it is possible to provide initial condition within if statement itself. This new syntax is called "if statement with initializer". This enhancement simplifies common code patterns and helps users keep scopes tight. Which in turn avoids variable leaking outside the scope.
+
+```c++
+if (init; condition) 
+{
+   // Code if the condition is true 
+} else 
+{
+   // Code if the condition is false
+}
+```
+
+### switch with Initializer 
+
+```c++
+switch (init; condition)
+{
+    case A:
+        // code if the variable match with case A
+    break ; 
+    case B:
+        // code if the variable match with case B
+    break ;  
+    case C:
+        // code if the variable match with case C
+    break ; 
+    default:
+        // code if the variable not matching with any case
+    break ;
+}
+```
+
+## Loops 
+
+- A loop is used for executing a block of statements repeatedly until a particular condition is satisfied.
+- the main components of a loop are
+  1. Iterator
+  2. Starting Point
+  3. Test( controls when the loop stops)
+  4. Increment(Decrement)
+  5. Loop body
+
+### for Loop
+
+```c++
+for (initialization; condition; update) 
+{
+    // body of-loop 
+}
+```
+
+or we can initialize the iterator outside the loop scope 
+
+```c++
+Data_Type initialization ;  
+for ( ; condition; update) 
+{
+    // body of-loop 
+}
+```
+
+- `initialization` - initializes variables and is executed only once
+- `condition` - if `true`, the body of `for` loop is executed, if `false`, the for loop is terminated
+- `update` - updates the value of initialized variables and again checks the condition
+- `Iterator` must be integral data type, we can use `size_t` instead of `unsigned int` 	
+
+<img src="image\cpp-for-loop-flowchart.webp" alt="cpp-for-loop-flowchart" style="zoom:50%;" />
+
+We can use multiple declarations and updates in for loop 
+
+```c++
+for (initialization1, initialization2, ...; condition; update1, update2, ...) 
+{
+    // body of-loop 
+}
+```
+
+ ### Rang Based for Loop
+
+In C++11, a new range-based `for` loop was introduced to work with collections such as **arrays** and **vectors**. 
+
+```c++
+for (variable : collection) 
+{
+    // body of loop
+}
+```
+
+Example 
+
+```c++
+#include <iostream>
+
+int main() 
+{
+    int num_array[] = {1, 2, 3, 4, 5, 6, 7, 8, 9, 10};
+  
+    for (int n : num_array) 
+    {
+        cout << n << " ";
+    }
+    return 0;
+}
+
+/* 
+* Output:1 2 3 4 5 6 7 8 9 10
+*/
+```
+
+> Range based for loop with initializer, helper variable in loop scope (C++20)
+>
+> ```c++
+> for (initialization; variable : collection) 
+> {
+>     // body of loop
+> }
+> ```
+
+### while Loop
+
+```c++
+while (condition) 
+{
+    // body of the loop
+}
+```
+
+- A `while` loop evaluates the `condition`
+- If the `condition` evaluates to `true`, the code inside the `while` loop is executed.
+- The `condition` is evaluated again.
+- This process continues until the `condition` is `false`. 
+- When the `condition` evaluates to `false`, the loop terminates.
+
+<img src="image\cpp-while-loop-flowchart.webp" alt="cpp-while-loop-flowchart" style="zoom:50%;" />
+
+### do while Loop
+
+The `do...while` loop is a variant of the `while` loop with one important difference: the body of `do...while` loop is executed once before the `condition` is checked.
+
+```c++
+do 
+{
+   // body of loop;
+}
+while (condition);
+```
+
+- The body of the loop is executed at first. Then the `condition` is evaluated.
+- If the `condition` evaluates to `true`, the body of the loop inside the `do` statement is executed again.
+- The `condition` is evaluated once again.
+- If the `condition` evaluates to `true`, the body of the loop inside the `do` statement is executed again.
+- This process continues until the `condition` evaluates to `false`. Then the loop stops.
+
+<img src="image\cpp-do-while-loop-flowchart.webp" alt="cpp-do-while-loop-flowchart" style="zoom:50%;" />
+
+### Infinite Loops
+
+If the `condition` in a loops are always `true`, it runs forever (until memory is full).
+
+```c++
+for( ; ; ) 
+{
+      // body of loop;
+}
+```
+
+```c++
+while () 
+{
+    // body of the loop
+}
+/********************************/
+while (true) 
+{
+    // body of the loop
+}
+```
+
+```c++
+do 
+{
+   // body of loop;
+}
+while ();
+/********************************/
+do 
+{
+   // body of loop;
+}
+while (true);
+```
+
+### Nested Loops
+
+A loop within another loop is called a nested loop.
+
+```c++
+for (initialization; condition; update) 
+{
+    // body of-loop 
+    for (initialization; condition; update) 
+    {
+        // body of-loop
+        for (initialization; condition; update) 
+        {
+            // body of-loop
+            // we can do this as we need 
+        } 
+    } 
+}
+```
+
+```c++
+while (condition) 
+{
+    // body of the loop
+    while (condition) 
+    {
+        // body of the loop
+        while (condition) 
+        {
+            // body of the loop
+            // we can do this as we need 
+        }
+    }
+}
+```
+
+```c++
+do 
+{
+   // body of loop;
+    do 
+    {
+       // body of loop;
+       // we can do this as we need 
+    }
+    while (condition);
+}
+while (condition);
+```
+
+### break 
+
+the `break` statement terminates the loop when it is encountered.
+
+```c++
+break ;
+```
+
+> `break` statement is usually used with decision-making statements.
+
+<img src="image\cpp-break-statement.webp" alt="cpp-break-statement" style="zoom:50%;" />
+
+### continue 
+
+In computer programming, the `continue` statement is used to skip the current iteration of the loop and the control of the program goes to the next iteration.
+
+```c++
+continue ;
+```
+
+> `continue` statement is almost always used with decision-making statements.
+
+<img src="image\cpp-continue-statement.webp" alt="cpp-continue-statement" style="zoom:50%;" />
+
+## Arrays
+
+An array is a collection of elements of the same type placed in contiguous memory locations that can be individually referenced by using an index to a unique identifier.
+
+### Declaration and Initialization
+
+```c++
+// Declaration 
+Data_Type arr_name [arr_size] ; 
+
+// Declaration and Initialization
+Data_Type arr_name [arr_size] {item1, item2, item3, ..., item(arr_size-1)} ; 
+```
+
+ ```c++
+ // declare and initialize and array
+ int x[6] {19, 10, 8, 17, 9, 15};
+ 
+ /**************************** or ****************************/
+ 
+ // declare and initialize an array
+ int x[] {19, 10, 8, 17, 9, 15};
+ ```
+
+<img src="image\cpp-array-initialization.webp" alt="cpp-array-initialization" style="zoom:50%;" />
+
+If an array has a size `n`, we can store up to n number of elements in the array. In such cases, the compiler assigns random values to the remaining places. Oftentimes, this random value is simply `0`.
+
+```c++
+// store only 3 elements in the array
+int x[6] {19, 10, 8};
+```
+
+<img src="image\cpp-array-empty-members.webp" alt="cpp-array-empty-members" style="zoom:50%;" />
+
+### Array Access
+
+In C++, each element in an array is associated with a number. The number is known as an array index. We can access elements of an array by using those indices.
+
+```c++
+// syntax to access array elements
+arr[index];
+```
+
+<img src="image\cpp-array-declaration.webp" alt="cpp-array-declaration" style="zoom:50%;" />
+
+- The array indices start with `0`. Meaning x[0] is the first element stored at index `0`.
+- If the size of an array is `n`, the last element is stored at index `(n-1)`. 
+- Elements of an array have consecutive addresses. For example, suppose the starting address of `x[0]` is 2120d. Then, the address of the next element `x[1]` will be 2124d, the address of `x[2]` will be 2128d and so on.
+- If we declare an array of size 10, then the array will contain elements from index 0 to 9, if we try to access the element at index 10 or more than 10, it will result in Undefined Behavior.
+
+ ### Size of Arrays
+
+Before C++ 17 there's only way to find size of an array.
+
+```c++
+size = sizeof(arr_name) / sizeof(arr_name[0]) ; 
+```
+
+After C++ 17 we got a new way to find the size of an array.
+
+```c++
+size = std::size(arr_name) ; 
+```
+
+> ### Omit Array Size
+>
+> You don't have to specify the size of the array. But if you don't, it will only be as big as the elements that are inserted into it, but it's available for only one the first dimension of the array.
+>
+> ```c++
+> Data_Type arr_name [] ; 
+> Data_Type arr_name [][2nd_D_arr_size] ;
+> Data_Type arr_name [][2nd_D_arr_size][3rd_D_arr_size] ;
+> ```
+
+### Array of  Characters 
+
+String is a collection of characters. There are two types of strings commonly used in C++ programming language:
+
+- Strings that are objects of string class (The Standard C++ Library string class)
+- C-strings (C-style Strings)
+
+Now we'll just take C-strings. In C programming, the collection of characters is stored in the form of arrays. This is also supported in C++ programming. Hence it's called C-strings.
+
+C-strings are arrays of type `char` terminated with null character, that is, `\0` (ASCII value of null character is 0).
+
+```c++
+char string_name[] = "string_data" ;
+
+char string_name[] {"string_data"} ;
+
+char string_name[5] {"Data"} ;
+
+char string_name[] {'D', 'a', 't', 'a', '\0'} ;
+
+char string_name[5] {'D', 'a', 't', 'a', '\0'} ;
+```
+
+### Multi Dimensional Array
+
+In C++, we can create an array of an array, known as a multidimensional array.
+
+![123D array](E:\My Note\C++\image\123D array.png)
+
+#### 2D Array
+
+```c++
+/****************************** 2D Array ******************************/
+// Declaration 
+Data_Type arr_name [1st_D_arr_size][2nd_D_arr_size] ;
+
+// Declaration and Initialization
+Data_Type arr_name [1st_D_arr_size][2nd_D_arr_size] {{1st_D_Data}, {2nd_D_Data}} ;
+```
+
+![2Darray](image\2Darray.png)
+
+#### 3D Array
+
+```c++
+/****************************** 3D Array ******************************/
+// Declaration 
+Data_Type arr_name [1st_D_arr_size][2nd_D_arr_size][3rd_D_arr_size] ;
+
+// Declaration and Initialization
+Data_Type arr_name [1st_D_arr_size][2nd_D_arr_size][3rd_D_arr_size] 
+{     /************** 2nd_D_Data **************/
+    { {3rd_D_Data}, {3rd_D_Data},  {3rd_D_Data} }, // 1st_D_Data
+    { {3rd_D_Data}, {3rd_D_Data},  {3rd_D_Data}},  // 1st_D_Data
+    { {3rd_D_Data}, {3rd_D_Data},  {3rd_D_Data}},  // 1st_D_Data
+} ;
+```
+
+<img src="image\3D-array.jpg" alt="3D-array" style="zoom:67%;" />
+
+## Pointers
+
+Pointers are variables that store the memory addresses of other variables. If we have a variable `var` in our program, `&var` will give us its address in the memory.
+
+![cpp-pointer-working](image\cpp-pointer-working.webp)
+
+### Declaration and Initialization
+
+```c++
+// Declaration 
+Data_Type *ptr ; 
+
+// Declaration and Initialization
+Data_Type *ptr {Value} ; 
+
+// Initialization
+int var {Value} ;
+ptr = &var ; 
+```
+
+> - ***** it's called the **dereference operator**. It operates on a pointer and gives the value pointed by the address stored in the pointer. That is, `*pointVar = var`.
+> - `ptr` and `*ptr` is completely different. We cannot do something like `*ptr = &var;`
+> - Pointer to another variable must be same data type or get compiler error. 
+
+```c++
+// wirting into uninitialized pointer is very BAD!!!
+int * ptr ; // unkown address
+* ptr = 5 ; // very BAB, writing in junk address
+// must initilize the pointer before use it.
+```
+
+### Pointer to Array
+
+```c++
+int *ptr;
+int arr[5];
+ptr = arr;
+```
+
+![cpp-pointers-and-arrays](image\cpp-pointers-and-arrays.png)
+
+> Array names decay to pointers. In simple words, array names are converted to pointers. That's the reason why we can use pointers to access elements of arrays.
+
+### Constant with Pointers
+
+![PointersWithConstants-1024x535](image\PointersWithConstants-1024x535.png)
+
+1. Non const pointer to Non const data
+
+   ```c++
+   /*********** Non const pointer to Non const data ***********/
+   int * ptr {} ; 
+   int var {10} ; 
+   
+   ptr = &var ; 
+   
+   // can change the pointed value to another 
+   *ptr = 5 ;
+   
+   // can change the pointer itself
+   int x {20} ; 
+   ptr = &x ; 
+   ```
+
+2. Non const pointer to const data
+
+   ```c++
+   /*********** Non const pointer to const data ***********/
+   int const * ptr {} ; 
+   const int var {10} ; 
+   
+   ptr = &var ; 
+   
+   // can't change the pointed value to another 
+   *ptr = 5 ; // compiler error
+   
+   // can change the pointer itself
+   int x {20} ; 
+   ptr = &x ; 
+   ```
+
+3. const pointer to Non const data
+
+   ```c++
+   /*********** const pointer to Non const data ***********/
+   int * const ptr {} ; 
+   const int var {10} ; 
+   
+   ptr = &var ; 
+   
+   // can change the pointed value to another 
+   *ptr = 5 ; 
+   
+   // can't change the pointer itself
+   int x {20} ; 
+   ptr = &x ; // compiler error
+   ```
+
+4. const pointer to const data
+
+   ```c++
+   /*********** const pointer to const data ***********/
+   int const * const ptr {} ; 
+   const int var {10} ; 
+   
+   ptr = &var ; 
+   
+   // can't change the pointed value to another 
+   *ptr = 5 ; // compiler error
+   
+   // can't change the pointer itself
+   int x {20} ; 
+   ptr = &x ; // compiler error
+   ```
+
+> One way to remember the syntax (according to Bjarne Stroustrup) is the `spiral rule`.
+> The rule says, start from the name of the variable and move clockwise to the next pointer or type. Repeat until expression ends.
+>
+> ![spiral-2](image\spiral-2.jpg)
+
+### Pointer Arithmetic 
+
+A set of operations we can do on the pointer representing the array to manipulate the array. These operations can include navigating from element to element, computing the distance between elements and comparing addresses of elements.
+
+<img src="image\cpp_memory_pointer_arithmetic_07.svg" alt="cpp_memory_pointer_arithmetic_07" style="zoom:50%;" />
+
+> `std::ptrdiff_t` is the signed integer type of the result of subtracting two pointers.
+
+### Dynamic Memory Allocation 
+
+Lot’s of programs running on our OS. We can quickly run our of memory.
+
+A trick that fools your program into thinking it is the only program running on your OS, and all memory resources belong to it. Each program is abstracted into a process, and each process has access to the memory range 0 ~ 2𝑁, where N is 32 on 32 bit systems and 64 on 64 bit.
+
+The entire program is not loaded in real memory by the CPU and MMU. Only parts that are about to be executed are loaded. Making effective use of real memory, a valuable and lacking resource. The memory map is a standard format defined by the OS. All programs written for that OS must conform to it. It is usually divided into some sections.
+
+![memory-layout-in-c](image\memory-layout-in-c.png)
+
+So far we’ve only been using memory allocated on the stack. We are going to see how one can allocate memory from the heap, and some of the differences between these mechanisms.
+
+![stack vs heap](image\stack vs heap.png)
+
+We can allocate and then deallocate memory dynamically using the `new` and `delete` operators respectively.
+
+1. `new` operator returns the address of the **memory location**.
+
+    ```c++
+    Data_Type *ptr = new Data_Type ;
+    
+    /************************* Example *************************/
+    // declare an int pointer
+    int * ptr;
+    
+    // dynamically allocate memory
+    // using the new keyword 
+    ptr = new int;
+    
+    // assign value to allocated memory
+    *ptr = 45;
+    ```
+
+ 2. `delete` operator is used. It returns the memory to the operating system. This is known as **memory deallocation**.
+
+    ```c++
+    delete ptr;
+    
+    /************************* Example *************************/
+    // declare an int pointer
+    int * ptr;
+    
+    // dynamically allocate memory
+    // using the new keyword 
+    ptr = new int;
+    
+    // assign value to allocated memory
+    *ptr = 45;
+    
+    // print the value stored in memory
+    cout << *ptr; // Output: 45
+    
+    // deallocate the memory
+    delete ptr;
+    ```
+
+> If the program uses a large amount of unwanted memory using `new`, the system may crash because there will be no memory available for the operating system. In this case, the `delete` operator can help the system from crash.
+
+In some rare cases, the ‘new’ operator will fail to allocate dynamic memory from the heap. When that happens, and you have no mechanism in place to handle that failure, an exception will be thrown and your program will crash. ‘new’ fails very rarely in practice and you’ll see many programs that assume that it always works and don’t check for memory allocation failure in any way. Depending on your application, failed memory allocations can be very bad and you need to check and handle them.
+
+```c++
+int * data = new int[10000000000000000]; //CRASH!
+```
+
+There's two ways to check for failed memory allocations:
+
+1. Through the exception mechanism
+
+   ```c++
+   //exception
+   for(size_t i{0} ; i < 100 ; ++i)
+   {
+       try
+       {
+           int * data = new int[1000000000];
+       }
+       catch(std::exception& ex)
+       {
+           std::cout << "  Something went wrong : " << ex.what() << std::endl;
+       }
+   }
+   ```
+
+2. `std::notthrow` setting
+
+   ```c++
+   //std::nothrow
+   for(size_t i{0} ; i < 100 ; ++i)
+   {
+       int * data = new(std::nothrow) int[1000000000];
+       if(data!=nullptr)
+       {
+           std::cout << "Data allocated" << std::endl;
+       }
+       else
+       {
+           std::cout << "Data allocation failed" << std::endl;
+       }  
+   }
+   ```
+
+### Dynamic Array
+
+A dynamic array is quite similar to a regular array, but its size is modifiable during program runtime. Dynamic Array elements occupy a contiguous block of memory. Once an array has been created, its size cannot be changed. However, a dynamic array is different. A dynamic array can expand its size even after it has been filled. During the creation of an array, it is allocated a predetermined amount of memory. This is not the case with a dynamic array as it grows its memory size by a certain factor when there is a need.
+
+```c++
+DataType * ptr_array { new DataType[size]{} } ; 
+```
+
+- Regular arrays have a fixed size. You cannot modify their size once declared.
+- With these types of arrays, the memory size is determined during compile time.
+- Dynamic arrays are different. Their sizes can be changed during runtime.
+- In dynamic arrays, the size is determined during runtime.
+- Dynamic arrays in C++ are declared using the `new` keyword.
+- We use `square brackets` to specify the number of items to be stored in the dynamic array.
+- Once done with the array, we can free up the memory using the delete operator.
+- Use the `delete` operator with `[]` to free the memory of all array elements.
+- A `delete` without `[]` frees the memory of only a single element.
+- There is no built-in mechanism to resize C++ arrays.
+- To initialize an array using a list initializer, we don’t use the `=` operator.
+
+### Dangling Pointer 
+
+Dangling pointer is a pointer pointing to a memory location that has been freed (or deleted). There are different ways where Pointer acts as dangling pointer:
+
+1. Uninitialized pointer
+
+   ```c++
+   int * p_number; // Dangling uninitialized pointer
+   
+   std::cout << std::endl;
+   std::cout << "Case 1 : Uninitialized pointer : ." << std::endl;
+   std::cout << "p_number : " << p_number << std::endl;
+   std::cout << "*p_number : " << *p_number << std::endl; //CRASH!
+   ```
+
+2. Deleted pointer
+
+   ```c++
+   std::cout << std::endl;
+   std::cout << "Case 2 : Deleted pointer" << std::endl;
+   int * p_number1 {new int{67}};
+   
+   std::cout << "*p_number1 (before delete) : " << *p_number1 << std::endl;
+   
+   delete p_number1;
+   //undefined behaviour : Crash/ garbage or whatever
+   std::cout << "*p_number1(after delete) : " << *p_number1 << std::endl; 
+   ```
+
+3. Multiple pointers pointing to same memory
+
+   ```c++
+   std::cout << std::endl;
+   std::cout << "Case 3 : Multiple pointers pointing to same address : " << std::endl;
+   
+   int *p_number3 {new int{83}};
+   int *p_number4 {p_number3};
+   
+   std::cout << "p_number3 - " << p_number3 << " - " << *p_number3 << std::endl;
+   std::cout << "p_number4 - " << p_number4 << " - " << *p_number4 << std::endl;
+   
+   //Deleting p_number3
+   delete p_number3;
+   
+   //p_number4 points to deleted memory. Dereferncing it will lead to
+   //undefined behaviour : Crash/ garbage or whatever
+   std::cout<< "p_number4(after deleting p_number3) - " << p_number4 << " - " << *p_number4 ;
+   ```
+
+## Reference
+
+ When a variable is declared as a reference, it becomes an alternative name for an existing variable. A variable can be declared as a reference by putting ‘&’ in the declaration. 
+
+### Declaration and Initialization
+
+```c++
+DataType & ref_name = ref_variable ; 
+```
+
+Example 
+
+```c++
+#include <iostream>
+int main()
+{
+  int x = 10;
+  // ref is a reference to x.
+  int& ref = x;
+  // Value of x is now changed to 20
+  ref = 20;
+  std::cout << "x = " << x << '\n';
+  // Value of x is now changed to 30
+  x = 30;
+  std::cout << "ref = " << ref << '\n';
+  return 0;
+}
+
+/* Output
+* x = 20
+* ref = 30
+*/
+```
+
+### Applications 
+
+1. **Modify the passed parameters in a function**: If a function receives a reference to a variable, it can modify the value of the variable. For example, the following program variables are swapped using references. 
+2. **Avoiding a** **copy of large structures**: Imagine a function that has to receive a large object. If we pass it without reference, a new copy of it is created which causes wastage of CPU time and memory. We can use references to avoid this. 
+3. **In For Each Loops to modify all objects** : We can use references in for each loops to modify all elements. 
+4. **For Each Loop to avoid the** **copy of objects**: We can use references in each loop to avoid a copy of individual objects when objects are large.  
+
+### Reference vs. Pointer
+
+<img src="image\ref vs ptr.jpg" alt="ref vs ptr" style="zoom:67%;" />
+
+### const Reference
+
+A `const` reference that isn’t `const`. We can change the variable only from the original one, not from the reference variable .
+
+```c++
+const DataType & ref_name = ref_variable ; 
+```
+
+ ```c++
+ #include <iostream>
+ int main()
+ {
+ 	int age {27};
+ 	const int& ref_age{age};
+ 	
+ 	std::cout << "age : " << age << std::endl;
+ 	std::cout << "ref_age : " << ref_age << std::endl;
+ 	
+ 	//Mofify through reference -> compiler error
+ 	//ref_age++;  
+ 	
+ 	//Mofify through original variable
+ 	age++;
+ 	
+ 	std::cout << "age : " << age << std::endl;
+ 	std::cout << "ref_age : " << ref_age << std::endl;
+ }
+ 
+ /* Output 
+ * age : 27
+ * ref_age : 27
+ * age : 28
+ * ref_age : 28
+ */
+ ```
 
 
 
