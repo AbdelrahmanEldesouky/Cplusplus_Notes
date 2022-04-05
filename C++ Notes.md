@@ -6,9 +6,6 @@
 >
 > Fall 2022
 >
-> ### Level
->
-> Beginner and Advanced  
 
 > # BY 
 >
@@ -126,6 +123,7 @@ Data_Type Variable_Name = Value ;
 >
 > ```c++
 > std::cout << sizeof(data_type) ; 
+> ```
 
 ### Integer 
 
@@ -965,7 +963,7 @@ for ( ; condition; update)
 - `initialization` - initializes variables and is executed only once
 - `condition` - if `true`, the body of `for` loop is executed, if `false`, the for loop is terminated
 - `update` - updates the value of initialized variables and again checks the condition
-- `Iterator` must be integral data type, we can use `size_t` instead of `unsigned int` 	
+	 `Iterator` must be integral data type, we can use `size_t` instead of `unsigned int` 	
 
 <img src="image\cpp-for-loop-flowchart.webp" alt="cpp-for-loop-flowchart" style="zoom:50%;" />
 
@@ -1265,11 +1263,13 @@ char string_name[] {'D', 'a', 't', 'a', '\0'} ;
 char string_name[5] {'D', 'a', 't', 'a', '\0'} ;
 ```
 
+> `cctype` and `cstring` are a libraries containing different functions to deal with strings.
+
 ### Multi Dimensional Array
 
 In C++, we can create an array of an array, known as a multidimensional array.
 
-![123D array](E:\My Note\C++\image\123D array.png)
+![123D array](image\123D array.png)
 
 #### 2D Array
 
@@ -1318,7 +1318,7 @@ Data_Type *ptr ;
 Data_Type *ptr {Value} ; 
 
 // Initialization
-int var {Value} ;
+int var {} ;
 ptr = &var ; 
 ```
 
@@ -1681,7 +1681,155 @@ const DataType & ref_name = ref_variable ;
  */
  ```
 
+## String 
+
+Previously we said. String is a collection of characters. There are two types of strings commonly used in C++ programming language:
+
+- Strings that are objects of string class (The Standard C++ Library string class)
+- C-strings (C-style Strings)
+
+And we spoke about C-strings in Arrays chapter, now we'll just take the standard C++ library string class. C++ has in its definition a way to represent a sequence of characters as an object of the class. This class is called `std::string`. String class stores the characters as a sequence of bytes with the functionality of allowing access to the single-byte character. 
+
+> must include `<string>` for string class.
+
+### Declaration and Initialization
+
+```c++
+// Declaration 
+std::string str ; 
+
+// Declaration and Initialization
+std::string str {"str Data"} ; 
+
+// Initialization
+std::string str ; 
+str = "str Data" ; 
+```
 
 
 
+### C-style vs. C++ Class String 
+
+1. A character array is simply an array of characters that can be terminated by a null character. A string is a class that defines objects that be represented as a stream of characters.
+2. The size of the character array has to be allocated statically, more memory cannot be allocated at run time if required. Unused allocated memory is wasted in the case of the character array. In the case of strings, memory is allocated dynamically. More memory can be allocated at run time on demand. As no memory is preallocated, no memory is wasted.
+3. There is a threat of array decay in the case of the character array. As strings are represented as objects, no array decay occurs.
+4. Implementation of character array is faster than `std::string`. Strings are slower when compared to implementation than character array.
+5. Character arrays do not offer many inbuilt functions to manipulate strings. String class defines a number of functionalities that allow manifold operations on strings.
+
+### Operation on string
+
+1. Iterator Functions
+
+   ![string Iterators](image\string Iterators.PNG)
+
+2. Capacity Functions
+
+   ![string capacity](image\string capacity.PNG)
+
+   > by default capacity of string is `15`.
+
+3. Access Functions
+
+   ![string access](image\string access.PNG)
+
+4. Modifiers Functions
+
+   ![string modifiers](image\string modifiers.PNG)
+
+5. Manipulating Functions
+
+   ![string manipulating](image\string manipulating.PNG)
+
+6. Search Functions 
+
+   ![string search](image\string search.PNG)
+
+7. Constant 
+
+   ![string constant](image\string constant.PNG)
+
+8. Numeric Function 
+
+   ![string to numeric](image\string to numeric.PNG)
+
+### Escape Sequence 
+
+| Escape sequence | Description          | Representation                |
+| --------------- | -------------------- | ----------------------------- |
+| `\'`            | single quote         | byte `0x27` in ASCII encoding |
+| `\"`            | double quote         | byte `0x22` in ASCII encoding |
+| `\?`            | question mark        | byte `0x3f` in ASCII encoding |
+| `\\`            | backslash            | byte `0x5c` in ASCII encoding |
+| `\a`            | audible bell         | byte `0x07` in ASCII encoding |
+| `\b`            | backspace            | byte `0x08` in ASCII encoding |
+| `\f`            | form feed - new page | byte `0x0c` in ASCII encoding |
+| `\n`            | line feed - new line | byte `0x0a` in ASCII encoding |
+| `\r`            | carriage return      | byte `0x0d` in ASCII encoding |
+| `\t`            | horizontal tab       | byte `0x09` in ASCII encoding |
+| `\v`            | vertical tab         | byte `0x0b` in ASCII encoding |
+
+### Raw String Literals
+
+A raw string literal is a string in which the escape characters like **\n**, **\t** or **\”**  of C++ are not processed. Hence, this was introduced in C++11, a raw string literal which starts with `R( and ends in )`. These raw string literals allow a series of characters by writing precisely its contents like raw character sequence. 
+
+```c++
+std::string str {R "delimiter( raw_characters )delimiter"} ; 
+
+// Ordinary String Literal 
+std::string str {"\\\\n"} ; 
+    
+// Raw String Literal 
+std::string str {R"(\\n)"} ; 
+```
+
+### string_view C++17
+
+The std::string has some demerits, one of the most common situations is constant strings. Below is the program that demonstrates the problem that occurs in dealing with constant strings with std::string: 
+
+```c++
+// C++ program to demonstrate the
+// problem occurred in string
+#include <iostream>
+#include <string>
+using namespace std;
+  
+// Driver Code
+int main()
+{
+    char str_1[]{ "Hello !!, GeeksforGeeks" };
+  
+    string str_2{ str_1 };
+    string str_3{ str_2 };
+  
+    // Print the string
+    cout << str_1 << '\n'
+         << str_2 << '\n'
+         << str_3 << '\n';
+  
+    return 0;
+}
+
+/* Output
+* Hello !!, GeeksforGeeks
+* Hello !!, GeeksforGeeks
+* Hello !!, GeeksforGeeks
+*/
+
+/* 
+The output is the same as expected. But, in order to view “Hello !!, GeeksforGeeks” twice the std::string performs overheads on the memory twice. But here the task was to read the string (“Hello !!, GeeksforGeeks”), and no write operation is required on it. So just to display a string why assign memory multiple times. In order to deal with the strings more efficiently, C++17 proposed std::string_view() which provides the view of pre-defined char str[] without creating a new object to the memory. 
+*/ 
+```
+
+**Benefits of `std::string_view`:**
+
+- **Light and Cheaper:** The `std::string_view` is a very light, cheaper and is mainly used to provide the view of the string. Whenever the `std::string_view` is created there is no need to copy the string in the manner as done in the above example that was inefficient and was causing overhead on the memory. It makes the copying process of the string quite efficient and never creates any copy of the string when the modification is being made in the viewed string the made changes have appeared in the `std::string_view`.
+- **Better Performance:** The `std::string_view` is better than the const `std::string&` because it removes the constraint of having a `std::string` object at the very beginning of the string as `std::string_view` is composed of two elements first one is `const char*` that points to the starting position of the array and the second is size.
+- **Supports crucial function:** The `std::string_view` supports mostly all crucial function that is applied over the `std::string` like `substr`, `compare`, `find`, overloaded comparison operators `(e.g., ==, <, >, !=)`. So in most of the cases, it removes the constraint of having a `std::string` object declaration when our preference is read-only.
+
+> `std::string_view` C++17 library has proposed a standard type of string (`std::string_view`) which is different from the usual `std::string`.  
+
+- The `std::string_view` provides a lightweight object that offers read-only access to a string or a part of a string using an interface similar to the interface of `std::_string` and merely refers to the contiguous char sequence. Unlike `std::string`, which keeps its own copy of the string, It also provides a view of a string that is defined elsewhere in the source code.
+- it is composed of two members: a `const char*` that points to the start of the char array, and the _size. It is a non-owning reference to a string in itself.
+
+## Function
 
