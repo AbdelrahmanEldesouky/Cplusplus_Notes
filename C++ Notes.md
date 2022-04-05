@@ -759,7 +759,7 @@ The conditional operator is kind of similar to the if-else statement as it does 
 variable = (Expression1) ? Expression2 : Expression3
 ```
 
-![Ternary operator-in-c](image\Ternary operator-in-c.png)
+![Ternary operator-in-c](image\Ternary-operator-in-c.png)
 
 > all Expressions must be can compared (same data type).
 
@@ -1269,7 +1269,7 @@ char string_name[5] {'D', 'a', 't', 'a', '\0'} ;
 
 In C++, we can create an array of an array, known as a multidimensional array.
 
-![123D array](image\123D array.png)
+![123D array](image\123D-array.png)
 
 #### 2D Array
 
@@ -1420,7 +1420,7 @@ ptr = arr;
 > One way to remember the syntax (according to Bjarne Stroustrup) is the `spiral rule`.
 > The rule says, start from the name of the variable and move clockwise to the next pointer or type. Repeat until expression ends.
 >
-> ![spiral-2](image\spiral-2.jpg)
+> ![spiral-2](image\spiral.jpg)
 
 ### Pointer Arithmetic 
 
@@ -1720,37 +1720,37 @@ str = "str Data" ;
 
 1. Iterator Functions
 
-   ![string Iterators](image\string Iterators.PNG)
+   ![string Iterators](image\string-Iterators.PNG)
 
 2. Capacity Functions
 
-   ![string capacity](image\string capacity.PNG)
+   ![string capacity](image\string-capacity.PNG)
 
    > by default capacity of string is `15`.
 
 3. Access Functions
 
-   ![string access](image\string access.PNG)
+   ![string access](image\string-access.PNG)
 
 4. Modifiers Functions
 
-   ![string modifiers](image\string modifiers.PNG)
+   ![string modifiers](image\string-modifiers.PNG)
 
 5. Manipulating Functions
 
-   ![string manipulating](image\string manipulating.PNG)
+   ![string manipulating](image\string-manipulating.PNG)
 
 6. Search Functions 
 
-   ![string search](image\string search.PNG)
+   ![string search](image\string-search.PNG)
 
 7. Constant 
 
-   ![string constant](image\string constant.PNG)
+   ![string constant](image\string-constant.PNG)
 
 8. Numeric Function 
 
-   ![string to numeric](image\string to numeric.PNG)
+   ![string to numeric](image\string-to-numeric.PNG)
 
 ### Escape Sequence 
 
