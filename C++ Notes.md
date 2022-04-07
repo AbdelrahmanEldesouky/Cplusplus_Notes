@@ -1643,7 +1643,7 @@ int main()
 
 ### Reference vs. Pointer
 
-<img src="/image/ref vs ptr.jpg" alt="ref vs ptr" style="zoom:67%;" />
+<img src="/image/ref-vs-ptr.jpg" alt="ref vs ptr" style="zoom:67%;" />
 
 ### const Reference
 
