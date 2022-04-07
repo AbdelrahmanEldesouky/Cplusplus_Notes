@@ -1724,7 +1724,7 @@ str = "str Data" ;
 
 2. Capacity Functions
 
-   ![string capacity](/image/string-capacity.PNG)
+   ![string capacity](/image/string-capacity.png)
 
    > by default capacity of string is `15`.
 
