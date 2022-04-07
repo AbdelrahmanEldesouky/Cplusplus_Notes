@@ -1643,7 +1643,7 @@ int main()
 
 ### Reference vs. Pointer
 
-<img src="/image/ref-vs-ptr.jpg" alt="ref vs ptr" style="zoom:67%;" />
+<img src="/image/ref vs ptr.jpg" alt="ref vs ptr" style="zoom:67%;" />
 
 ### const Reference
 
@@ -1724,7 +1724,7 @@ str = "str Data" ;
 
 2. Capacity Functions
 
-   ![string capacity](/image/string-capacity.png)
+   ![string capacity](/image/string-capacity.PNG)
 
    > by default capacity of string is `15`.
 
@@ -1732,23 +1732,19 @@ str = "str Data" ;
 
    ![string access](/image/string-access.png)
 
-4. Modifiers Functions
-
-   ![string modifiers](/image/string-modifiers.png)
-
-5. Manipulating Functions
+4. Manipulating Functions
 
    ![string manipulating](/image/string-manipulating.png)
 
-6. Search Functions 
+5. Search Functions 
 
    ![string search](/image/string-search.png)
 
-7. Constant 
+6. Constant 
 
    ![string constant](/image/string-constant.png)
 
-8. Numeric Function 
+7. Numeric Function 
 
    ![string to numeric](/image/string-to-numeric.png)
 
@@ -1791,7 +1787,6 @@ The std::string has some demerits, one of the most common situations is consta
 // problem occurred in string
 #include <iostream>
 #include <string>
-using namespace std;
   
 // Driver Code
 int main()
@@ -1802,7 +1797,7 @@ int main()
     string str_3{ str_2 };
   
     // Print the string
-    cout << str_1 << '\n'
+    std::cout << str_1 << '\n'
          << str_2 << '\n'
          << str_3 << '\n';
   
@@ -1831,5 +1826,294 @@ The output is the same as expected. But, in order to view “Hello !!, GeeksforG
 - The `std::string_view` provides a lightweight object that offers read-only access to a string or a part of a string using an interface similar to the interface of `std::_string` and merely refers to the contiguous char sequence. Unlike `std::string`, which keeps its own copy of the string, It also provides a view of a string that is defined elsewhere in the source code.
 - it is composed of two members: a `const char*` that points to the start of the char array, and the _size. It is a non-owning reference to a string in itself.
 
+![string_view_indirection](/image/string_view_indirection.svg)
+
 ## Function
+
+A function is a block A reusable piece of code that can take a number of optional inputs and produce some desirable output that performs a specific task. 
+
+There are two types of function:
+
+1. Standard Library Functions: Predefined in C++
+2. User-defined Function: Created by users
+
+### Prototype and Definition 
+
+C++ allows the programmer to define their own function. A user-defined function groups code to perform a specific task and that group of code is given a name (identifier). When the function is invoked from any part of the program, it all executes the codes defined in the body of the function.
+
+The prototype needs to come BEFORE the function call in your file. Otherwise the compilation will fail. The full function definition coming in front of main() also doubles as a prototype(declaration).
+
+```c++
+// prototype with defination 
+returnType functionName (parameter1, parameter2,...) 
+{
+    // function body   
+    
+    return returnData
+}
+
+// prototype separate from the defination 
+returnType functionName (parameter1, parameter2,...); // prototype
+
+int main ()
+{
+    // main body
+}
+
+returnType functionName (parameter1, parameter2,...) // definaion
+{
+    // function body   
+    
+    return returnData
+}
+```
+
+### Call Functions 
+
+To use the function, we need to call it. 
+
+```c++
+returnType functionName (parameter1, parameter2,...) 
+{
+    // function body   
+    
+    return returnData
+}
+
+int main()
+{
+    // calling the function 
+    returnVariable = functionName (parameter1, parameter2,...) ;	// if has return value
+    functionName (parameter1, parameter2,...) ;					  // if has no return value
+}
+```
+
+![cpp-function-call](/image/cpp-function-call.webp)
+
+### Multiple Source Files
+
+Small programs are typically written in a single `.cpp` file. However, as programs get larger, it's necessary to split the source into several files in order to make the project manageable. Because C++ needs to know the declarations of functions before they are called, function prototypes (declarations) are typically written at the top of a single-file, multiple-function program. This ensures that the call and the definition are both consistent. the compiler compiles each file individually. It does not know about the contents of other code files, or remember anything it has seen from previously compiled code files. So even though the compiler may have seen the definition of function *add* previously (if it compiled *add.cpp* first), it doesn’t remember. 
+
+> One Definition Rule : The same function implementation can’t show up in the global namespace more than once.
+
+The linker searches for definitions in all translation units (.cpp ) files in the project. Doesn’t have to live in a . cpp file with the same name as the header.
+
+![Multiple files](/image/Multiple files.png)
+
+### Function Parameters 
+
+ a function can be declared with parameters (arguments). A parameter is a value that is passed when declaring a function. called parameters. A legal C++ function can have 0 or more parameters.
+
+> The `void` keyword, used in the previous examples, indicates that the function should not return a value. If you want the function to return a value, you can use a data type (such as `int`, `string`, etc.) instead of `void`, and use the `return` keyword inside the function.
+
+![cpp-function-parameters](/image/cpp-function-parameters.webp)
+
+#### Default Parameter 
+
+You can also use a default parameter value, by using the equals sign (`=`). If we call the function without an argument, it uses the default value.
+
+```c++
+#include <iostream>
+
+void myFunction(string country = "Egypt") 
+{
+  std::cout << country << "\n";
+}
+
+int main()
+{
+  myFunction("Sweden");
+  myFunction("India");
+  myFunction();
+  myFunction("USA");
+  return 0;
+}
+
+/* Output
+* Sweden
+* India
+* Egypt
+* USA
+*/
+```
+
+#### Call by Value 
+
+When a function is called in the call by value, the **value of the actual parameters is copied into formal parameters.** Both the actual and formal parameters have their own copies of values, therefore any change in one of the types of parameters will not be reflected by the other. This is because both actual and formal parameters point to different locations in memory (i.e. they both have different memory addresses).
+
+![call-by-value-in-C-min](/image/call-by-value-in-C-min.png)
+
+> - If we call by `const value`, we can't change the copy it's cause a compiler error.
+> - If the passed parameters doesn't exact data type, the compiler will implement **implicit conversion**.
+
+#### Call by Address 
+
+In the call by address method, **both actual and formal parameters indirectly share the same variable.** In this type of call mechanism, pointer variables are used as formal parameters. The formal pointer variable holds the address of the actual parameter, hence the changes done by the formal parameter is also reflected in the actual parameter, both parameters point to different locations in memory, but since the formal parameter stores the address of the actual parameter, they share the same value. 
+
+![call-by-Address-in-C-min](/image/call-by-Address-in-C-min.png)
+
+```c++
+// prototype with defination 
+returnType functionName (*parameter) 
+{
+    // function body   
+    
+    return returnData
+}
+```
+
+> - If we call by `Address to const value`, we can't change the value it's cause a compiler error.
+> - If we call by `const Address to const value`, we can't change the value and the pointer point it's cause a compiler error.
+> - If the passed parameters doesn't exact data type, we'll got a complier error. 
+
+#### Call by Reference 
+
+In the call by reference, **both formal and actual parameters share the same value.** Both the actual and formal parameter points to the same address in the memory. That means any change on one type of parameter will also be reflected by other. Calls by reference are preferred in cases where we do not want to make copies of objects or variables, but rather we want all operations to be performed on the same copy.
+
+![call-by-reference-in-C-min](/image/call-by-reference-in-C-min.png)
+
+```c++
+// prototype with defination 
+returnType functionName (&parameter) 
+{
+    // function body   
+    
+    return returnData
+}
+/
+```
+
+> - If we call by `Reference to const value`, we can't change the value it's cause a compiler error.
+> - If the passed parameters doesn't exact data type, we'll got a complier error. 
+
+![call by address vs call by reference](/image/Difference-Between-Call-By-Address-and-Call-By-Reference-Comparison-Summary-1.jpg)
+
+#### Passing Array
+
+  We can pass arrays as an argument to a function. And, also we can return arrays from a function. 
+
+```c++
+returnType functionName(dataType arrayName[arraySize, dataType arraySize) 
+{
+    // function body
+}
+```
+
+> - It is not mandatory to specify the number of rows in the array. However, the number of columns should always be specified. This is why we have used `int n[][2]`, also we can pass arrays with more than 2 dimensions as a function argument. 
+> - We can also return an array from the function. However, the actual array is not returned. Instead the address of the first element of the array is returned with the help of pointers.
+> - If we pass array by reference we must pass the true array size to avoid the compiler error.
+> - when an array name is passed as a function parameter, the parameter name inside the body of the function is no longer a "real array" name, and it has lost all size information it had. It becomes just a pointer to the first element of the array. `sizeof(array)` isn't going to give us the size of the entire array, it's just going to be the size of a pointer on your system. 
+> - 
+
+![Passing-Array-To-Function-In-C](/image/Passing-Array-To-Function-In-C.png)
+
+#### Passing String
+
+![pass string](/image/pass string.PNG)
+
+1. Copy Value 
+
+   ![string pass by value](/image/string pass by value.png)
+
+   ![pass literals string](/image/pass literals string.png)
+
+2. Read-Only
+
+   ![pass string_view](/image/pass string_view.png)
+
+![general rule for passing parameters](/image/general rule for passing parameters.png)
+
+### constexpr Functions
+
+- The `constexpr` specifier declares that it is possible to evaluate the value of a function or variable at compile time.
+
+- Such variables and functions can then be used where only compile-time constant expressions are allowed.
+
+- These functions are used to improve the performance of the program by doing computations at compile time instead of run time.
+
+- These functions can really be helpful, where executing a program multiple times as the constant expressions will only be evaluated once during the compile time.
+
+- The `constexpr` specifies that the value of a variable or function can appear in constant expressions.
+
+-  the `constexpr` function it doesn’t have to be at compile time. 
+
+  ![constexpr function](/image/constexpr function.webp)
+
+### constvel Functions
+
+- `consteva` function, every call to the function must directly or indirectly produce a compile-time constant expression.
+- The `consteval` function is the same as `constexpr` function except that if the call to a `consteval` function doesn’t evaluate to a compile-time constant expression, then the program gives an error while it is not so in the case of a `constexpr` function.
+- Function can appear in constant expressions, it doesn’t say that the function has to be, while a `consteval` specifies that a function is an immediate function, that is, every call to the function must produce a compile-time constant.
+
+![function compile-runtime](/image/function compile-runtime.png)
+
+### Arguments to main Function 
+
+We can also give command-line arguments in C and C++. Command-line arguments are given after the name of the program in command-line shell of Operating Systems. To pass command line arguments, we typically define main() with two arguments : first argument is the number of command line arguments and second is list of command-line arguments. 
+
+```c++
+int main(int argc, char *argv[]) 
+{ 
+    /* ... */ 
+}
+
+/********* or *********/
+int main(int argc, char **argv) 
+{ 
+    /* ... */ 
+}
+```
+
+- `argc` (ARGument Count) is int and stores number of command-line arguments passed by the user including the name of the program. So if we pass a value to a program, value of argc would be 2 (one for argument and one for program name)
+- The value of argc should be non negative.
+- `argv` (ARGument Vector) is array of character pointers listing all the arguments.
+- If argc is greater than zero,the array elements from argv[0] to argv[argc-1] will contain pointers to strings.
+- Argv[0] is the name of the program , After that till argv[argc-1] every element is command -line arguments.
+
+Example 
+
+```c++
+// Name of program mainreturn.cpp
+#include <iostream>
+using namespace std;
+  
+int main(int argc, char** argv)
+{
+    cout << "You have entered " << argc
+         << " arguments:" << "\n";
+  
+    for (int i = 0; i < argc; ++i)
+        cout << argv[i] << "\n";
+  
+    return 0;
+}
+
+/* input 
+* $ g++ mainreturn.cpp -o main 
+* $ ./main Abdelrahman Saad Eldesouky
+*/
+
+/* Output 
+* You have entered 4 arguments:
+* ./main
+* Abdelrahman
+* Saad
+* Eldesouky
+*/
+```
+
+Properties of Command Line Arguments:
+
+1. They are passed to main() function.
+2. They are parameters/arguments supplied to the program when it is invoked.
+3. They are used to control program from outside instead of hard coding those values inside the code.
+4. `argv[argc]` is a NULL pointer.
+5. `argv[0]` holds the name of the program.
+6. `argv[1]` points to the first command line argument and `argv[n]` points last argument.
+
+
+
+
+
+
 
