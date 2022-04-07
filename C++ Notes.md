@@ -693,7 +693,7 @@ A region in your code where a variable name can be mentioned. You may be reading
 1. Global Variable: it's a variable with global scope, meaning that it is visible throughout the program.
 2. Local Variable:  it's a variable that is given local scope. Local variable references in the function or block in which it is declared override the same variable name in the larger scope.
 
-![Difference-Between-Local-and-Global-Variable-Comparison-Summary (1)](image\Difference-Between-Local-and-Global-Variable-Comparison-Summary (1).jpg)
+![Difference-Between-Local-and-Global-Variable-Comparison-Summary (1)](/image/Difference-Between-Local-and-Global-Variable-Comparison-Summary (1).jpg)
 
 ## Operations on Data
 
@@ -759,7 +759,7 @@ The conditional operator is kind of similar to the if-else statement as it does 
 variable = (Expression1) ? Expression2 : Expression3
 ```
 
-![Ternary operator-in-c](image\Ternary-operator-in-c.png)
+![Ternary operator-in-c](/image/Ternary-operator-in-c.png)
 
 > all Expressions must be can compared (same data type).
 
@@ -965,7 +965,7 @@ for ( ; condition; update)
 - `update` - updates the value of initialized variables and again checks the condition
 	 `Iterator` must be integral data type, we can use `size_t` instead of `unsigned int` 	
 
-<img src="image\cpp-for-loop-flowchart.webp" alt="cpp-for-loop-flowchart" style="zoom:50%;" />
+<img src="/image/cpp-for-loop-flowchart.webp" alt="cpp-for-loop-flowchart" style="zoom:50%;" />
 
 We can use multiple declarations and updates in for loop 
 
@@ -1032,7 +1032,7 @@ while (condition)
 - This process continues until the `condition` is `false`. 
 - When the `condition` evaluates to `false`, the loop terminates.
 
-<img src="image\cpp-while-loop-flowchart.webp" alt="cpp-while-loop-flowchart" style="zoom:50%;" />
+<img src="/image/cpp-while-loop-flowchart.webp" alt="cpp-while-loop-flowchart" style="zoom:50%;" />
 
 ### do while Loop
 
@@ -1052,7 +1052,7 @@ while (condition);
 - If the `condition` evaluates to `true`, the body of the loop inside the `do` statement is executed again.
 - This process continues until the `condition` evaluates to `false`. Then the loop stops.
 
-<img src="image\cpp-do-while-loop-flowchart.webp" alt="cpp-do-while-loop-flowchart" style="zoom:50%;" />
+<img src="/image/cpp-do-while-loop-flowchart.webp" alt="cpp-do-while-loop-flowchart" style="zoom:50%;" />
 
 ### Infinite Loops
 
@@ -1151,7 +1151,7 @@ break ;
 
 > `break` statement is usually used with decision-making statements.
 
-<img src="image\cpp-break-statement.webp" alt="cpp-break-statement" style="zoom:50%;" />
+<img src="/image/cpp-break-statement.webp" alt="cpp-break-statement" style="zoom:50%;" />
 
 ### continue 
 
@@ -1163,7 +1163,7 @@ continue ;
 
 > `continue` statement is almost always used with decision-making statements.
 
-<img src="image\cpp-continue-statement.webp" alt="cpp-continue-statement" style="zoom:50%;" />
+<img src="/image/cpp-continue-statement.webp" alt="cpp-continue-statement" style="zoom:50%;" />
 
 ## Arrays
 
@@ -1189,7 +1189,7 @@ Data_Type arr_name [arr_size] {item1, item2, item3, ..., item(arr_size-1)} ;
  int x[] {19, 10, 8, 17, 9, 15};
  ```
 
-<img src="image\cpp-array-initialization.webp" alt="cpp-array-initialization" style="zoom:50%;" />
+<img src="/image/cpp-array-initialization.webp" alt="cpp-array-initialization" style="zoom:50%;" />
 
 If an array has a size `n`, we can store up to n number of elements in the array. In such cases, the compiler assigns random values to the remaining places. Oftentimes, this random value is simply `0`.
 
@@ -1198,7 +1198,7 @@ If an array has a size `n`, we can store up to n number of elements in the array
 int x[6] {19, 10, 8};
 ```
 
-<img src="image\cpp-array-empty-members.webp" alt="cpp-array-empty-members" style="zoom:50%;" />
+<img src="/image/cpp-array-empty-members.webp" alt="cpp-array-empty-members" style="zoom:50%;" />
 
 ### Array Access
 
@@ -1209,7 +1209,7 @@ In C++, each element in an array is associated with a number. The number is know
 arr[index];
 ```
 
-<img src="image\cpp-array-declaration.webp" alt="cpp-array-declaration" style="zoom:50%;" />
+<img src="/image/cpp-array-declaration.webp" alt="cpp-array-declaration" style="zoom:50%;" />
 
 - The array indices start with `0`. Meaning x[0] is the first element stored at index `0`.
 - If the size of an array is `n`, the last element is stored at index `(n-1)`. 
@@ -1269,7 +1269,7 @@ char string_name[5] {'D', 'a', 't', 'a', '\0'} ;
 
 In C++, we can create an array of an array, known as a multidimensional array.
 
-![123D array](image\123D-array.png)
+![123D array](/image/123D-array.png)
 
 #### 2D Array
 
@@ -1282,7 +1282,7 @@ Data_Type arr_name [1st_D_arr_size][2nd_D_arr_size] ;
 Data_Type arr_name [1st_D_arr_size][2nd_D_arr_size] {{1st_D_Data}, {2nd_D_Data}} ;
 ```
 
-![2Darray](image\2Darray.png)
+![2Darray](/image/2Darray.png)
 
 #### 3D Array
 
@@ -1300,13 +1300,13 @@ Data_Type arr_name [1st_D_arr_size][2nd_D_arr_size][3rd_D_arr_size]
 } ;
 ```
 
-<img src="image\3D-array.jpg" alt="3D-array" style="zoom:67%;" />
+<img src="/image/3D-array.jpg" alt="3D-array" style="zoom:67%;" />
 
 ## Pointers
 
 Pointers are variables that store the memory addresses of other variables. If we have a variable `var` in our program, `&var` will give us its address in the memory.
 
-![cpp-pointer-working](image\cpp-pointer-working.webp)
+![cpp-pointer-working](/image/cpp-pointer-working.webp)
 
 ### Declaration and Initialization
 
@@ -1341,13 +1341,13 @@ int arr[5];
 ptr = arr;
 ```
 
-![cpp-pointers-and-arrays](image\cpp-pointers-and-arrays.png)
+![cpp-pointers-and-arrays](/image/cpp-pointers-and-arrays.png)
 
 > Array names decay to pointers. In simple words, array names are converted to pointers. That's the reason why we can use pointers to access elements of arrays.
 
 ### Constant with Pointers
 
-![PointersWithConstants-1024x535](image\PointersWithConstants-1024x535.png)
+![PointersWithConstants-1024x535](/image/PointersWithConstants-1024x535.png)
 
 1. Non const pointer to Non const data
 
@@ -1420,13 +1420,13 @@ ptr = arr;
 > One way to remember the syntax (according to Bjarne Stroustrup) is the `spiral rule`.
 > The rule says, start from the name of the variable and move clockwise to the next pointer or type. Repeat until expression ends.
 >
-> ![spiral-2](image\spiral.jpg)
+> ![spiral-2](/image/spiral.jpg)
 
 ### Pointer Arithmetic 
 
 A set of operations we can do on the pointer representing the array to manipulate the array. These operations can include navigating from element to element, computing the distance between elements and comparing addresses of elements.
 
-<img src="image\cpp_memory_pointer_arithmetic_07.svg" alt="cpp_memory_pointer_arithmetic_07" style="zoom:50%;" />
+<img src="/image/cpp_memory_pointer_arithmetic_07.svg" alt="cpp_memory_pointer_arithmetic_07" style="zoom:50%;" />
 
 > `std::ptrdiff_t` is the signed integer type of the result of subtracting two pointers.
 
@@ -1438,11 +1438,11 @@ A trick that fools your program into thinking it is the only program running on 
 
 The entire program is not loaded in real memory by the CPU and MMU. Only parts that are about to be executed are loaded. Making effective use of real memory, a valuable and lacking resource. The memory map is a standard format defined by the OS. All programs written for that OS must conform to it. It is usually divided into some sections.
 
-![memory-layout-in-c](image\memory-layout-in-c.png)
+![memory-layout-in-c](/image/memory-layout-in-c.png)
 
 So far we’ve only been using memory allocated on the stack. We are going to see how one can allocate memory from the heap, and some of the differences between these mechanisms.
 
-![stack vs heap](image\stack vs heap.png)
+![stack vs heap](/image/stack vs heap.png)
 
 We can allocate and then deallocate memory dynamically using the `new` and `delete` operators respectively.
 
@@ -1643,7 +1643,7 @@ int main()
 
 ### Reference vs. Pointer
 
-<img src="image\ref vs ptr.jpg" alt="ref vs ptr" style="zoom:67%;" />
+<img src="/image/ref vs ptr.jpg" alt="ref vs ptr" style="zoom:67%;" />
 
 ### const Reference
 
@@ -1720,37 +1720,37 @@ str = "str Data" ;
 
 1. Iterator Functions
 
-   ![string Iterators](image\string-Iterators.png)
+   ![string Iterators](/image/string-Iterators.png)
 
 2. Capacity Functions
 
-   ![string capacity](image\string-capacity.PNG)
+   ![string capacity](/image/string-capacity.PNG)
 
    > by default capacity of string is `15`.
 
 3. Access Functions
 
-   ![string access](image\string-access.png)
+   ![string access](/image/string-access.png)
 
 4. Modifiers Functions
 
-   ![string modifiers](image\string-modifiers.png)
+   ![string modifiers](/image/string-modifiers.png)
 
 5. Manipulating Functions
 
-   ![string manipulating](image\string-manipulating.png)
+   ![string manipulating](/image/string-manipulating.png)
 
 6. Search Functions 
 
-   ![string search](image\string-search.png)
+   ![string search](/image/string-search.png)
 
 7. Constant 
 
-   ![string constant](image\string-constant.png)
+   ![string constant](/image/string-constant.png)
 
 8. Numeric Function 
 
-   ![string to numeric](image\string-to-numeric.png)
+   ![string to numeric](/image/string-to-numeric.png)
 
 ### Escape Sequence 
 
