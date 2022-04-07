@@ -774,7 +774,7 @@ variable = (Expression1) ? Expression2 : Expression3
 
 ### Precedence and Associativity
 
-![precedence](/image/precedence.PNG)
+![precedence](/image/precedence.png)
 
 ## Control Flow
 
@@ -1720,7 +1720,7 @@ str = "str Data" ;
 
 1. Iterator Functions
 
-   ![string Iterators](image\string-Iterators.PNG)
+   ![string Iterators](image\string-Iterators.png)
 
 2. Capacity Functions
 
@@ -1730,27 +1730,27 @@ str = "str Data" ;
 
 3. Access Functions
 
-   ![string access](image\string-access.PNG)
+   ![string access](image\string-access.png)
 
 4. Modifiers Functions
 
-   ![string modifiers](image\string-modifiers.PNG)
+   ![string modifiers](image\string-modifiers.png)
 
 5. Manipulating Functions
 
-   ![string manipulating](image\string-manipulating.PNG)
+   ![string manipulating](image\string-manipulating.png)
 
 6. Search Functions 
 
-   ![string search](image\string-search.PNG)
+   ![string search](image\string-search.png)
 
 7. Constant 
 
-   ![string constant](image\string-constant.PNG)
+   ![string constant](image\string-constant.png)
 
 8. Numeric Function 
 
-   ![string to numeric](image\string-to-numeric.PNG)
+   ![string to numeric](image\string-to-numeric.png)
 
 ### Escape Sequence 
 
