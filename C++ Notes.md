@@ -2009,19 +2009,19 @@ returnType functionName(dataType arrayName[arraySize, dataType arraySize)
 
 #### Passing String
 
-![pass string](/image/pass string.PNG)
+![pass string](/image/pass-string.PNG)
 
 1. Copy Value 
 
-   ![string pass by value](/image/string pass by value.png)
+   ![string pass by value](/image/string-pass-by-value.png)
 
-   ![pass literals string](/image/pass literals string.png)
+   ![pass literals string](/image/pass-literals-string.png)
 
 2. Read-Only
 
-   ![pass string_view](/image/pass string_view.png)
+   ![pass string_view](/image/pass-string_view.png)
 
-![general rule for passing parameters](/image/general rule for passing parameters.png)
+![general rule for passing parameters](/image/general-rule-for-passing-parameters.png)
 
 ### constexpr Functions
 
@@ -2037,7 +2037,7 @@ returnType functionName(dataType arrayName[arraySize, dataType arraySize)
 
 -  the `constexpr` function it doesn’t have to be at compile time. 
 
-  ![constexpr function](/image/constexpr function.webp)
+  ![constexpr function](/image/constexpr-function.webp)
 
 ### constvel Functions
 
@@ -2045,7 +2045,7 @@ returnType functionName(dataType arrayName[arraySize, dataType arraySize)
 - The `consteval` function is the same as `constexpr` function except that if the call to a `consteval` function doesn’t evaluate to a compile-time constant expression, then the program gives an error while it is not so in the case of a `constexpr` function.
 - Function can appear in constant expressions, it doesn’t say that the function has to be, while a `consteval` specifies that a function is an immediate function, that is, every call to the function must produce a compile-time constant.
 
-![function compile-runtime](/image/function compile-runtime.png)
+![function compile-runtime](/image/function-compile-runtime.png)
 
 ### Arguments to main Function 
 
