@@ -2009,7 +2009,7 @@ returnType functionName(dataType arrayName[arraySize, dataType arraySize)
 
 #### Passing String
 
-![pass string](/image/pass-string.PNG)
+![pass string](/image/pass-string.png)
 
 1. Copy Value 
 
