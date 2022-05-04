@@ -2009,7 +2009,7 @@ Small programs are typically written in a single `.cpp` file. However, as progra
 
 The linker searches for definitions in all translation units (.cpp ) files in the project. Doesn’t have to live in a . cpp file with the same name as the header.
 
-![Multiple files](/image/Multiple files.png)
+![Multiple files](/image/Multiple_files.png)
 
 ### Function Parameters 
 
