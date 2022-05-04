@@ -110,7 +110,7 @@ int main()
 
 ```c++
 // Variable braced initialization
-Data_Type Variable_Name {Value} ; 
+Data_Type Variable_Name {Value} ; // 
 
 // Function variable initialization
 Data_Type Variable_Name (Value) ; 
@@ -119,11 +119,13 @@ Data_Type Variable_Name (Value) ;
 Data_Type Variable_Name = Value ;
 ```
 
-> Size of data type in memory 
+> - Size of data type in memory 
 >
 > ```c++
 > std::cout << sizeof(data_type) ; 
 > ```
+
+> The whole point of initialization with `{}` is to prevent or warn against potential data losses in this case. 
 
 ### Integer 
 
@@ -675,6 +677,115 @@ int main()
         C : 4294967274
 */
 ```
+
+### Enumeration
+
+An enumeration is a user-defined data type that consists of integral constants. To define an enumeration, keyword `enum` is used. Each enumeration is represented by an integral value under the hood.
+
+```c++
+// Declaration 
+enum Enumeration_Name {variable_0, variable_1, variable_2, ...., variable_n}; 
+
+// Initilization
+Enumeration_Name Variable_Name {variable_x} ; 
+```
+
+By default, variable_0 is 0, variable_1 is 1 and so on. You can change the default value of an `enum` element during declaration (if necessary).
+
+```c++
+enum Enumeration_Name 
+{
+    variable_0 = 5, 
+    variable_1 = 3,
+    variable_2 = 79
+}; 
+```
+
+When you create an enumerated type, only blueprint for the variable is created. Here's how you can create variables of `enum` type. 
+
+```c++
+enum boolean { false, true };
+
+// inside function
+enum boolean check;
+
+/************************************ using different syntax ************************************/
+enum boolean 
+{ 
+   false, true
+} check;
+```
+
+![enum](/image/enum.webp)
+
+#### enum class
+
+C++11 has introduced `enum` classes (also called scoped enumerations), that makes enumerations both strongly typed and strongly scoped. Class `enum` doesn’t allow implicit conversion to int, and also doesn’t compare enumerators from different enumerations. We can now specify the underlying type of the enumeration (as long as it’s an integer type). The default is integer; as with C++98. 
+
+![enum_cast](/image/enum_cast.webp)
+
+```c++
+// Declaration 
+enum class Enumeration_Name {variable_0, variable_1, variable_2, ...., variable_n}; 
+
+// Initilization
+Enumeration_Name Variable_Name {Enumeration_Name::variable_x} ; 
+```
+
+![enum_class](/image/enum_class.webp)
+
+#### using enum C++20
+
+A `using-enum-declaration` introduces the enumerator names of the named enumeration as if by a `using-declaration` for each enumerator. When in class scope, a `using-enum-declaration` adds the enumerators of the named enumeration as members to the scope, making them accessible for member lookup. 
+
+```c++
+enum class Month 
+{
+    jan, feb, mar, apr,
+    may, jun, jul, aug, 
+    sep, oct, nov, dec
+};
+
+// without using enum
+
+std::string_view month_to_string (Month month)
+{
+    switch (month)
+    {
+        case Month::jan : return "january" ; 
+        case Month::feb : return "february" ;
+        .
+        .
+        .    
+    }
+}
+
+// with using enum
+
+std::string_view month_to_string (Month month)
+{
+    switch (month)
+    {
+        using enum Month
+        case jan : return "january" ; 
+        case feb : return "february" ;
+        .
+        .
+        .    
+    }
+}
+```
+
+### Type Aliases 
+
+Type alias is a name that refers to a previously defined type, similar to `typedef`.
+
+```c++
+using Identifier_Name = Data_Type ; 
+Identifier_Name Variable_Name = Value ; 
+```
+
+> Recommended in modern C++
 
 ### Variable Lifetime
 
@@ -1904,6 +2015,10 @@ The linker searches for definitions in all translation units (.cpp ) files in th
 
  a function can be declared with parameters (arguments). A parameter is a value that is passed when declaring a function. called parameters. A legal C++ function can have 0 or more parameters.
 
+Output parameters should be passed in such a way that you can modify the arguments from inside the function. Options are passing by reference or by pointer. References are preferred in C++.
+
+Input parameters shouldn’t be modifiable from inside a function. The function really need to get input (read) from the arguments. You enforce modification restrictions with the `const`. Options are passing by `const` reference, passing by `pointer` to `const`, or even passing by `const pointer` to `const`
+
 > The `void` keyword, used in the previous examples, indicates that the function should not return a value. If you want the function to return a value, you can use a data type (such as `int`, `string`, etc.) instead of `void`, and use the `return` keyword inside the function.
 
 ![cpp-function-parameters](/image/cpp-function-parameters.webp)
@@ -2009,7 +2124,7 @@ returnType functionName(dataType arrayName[arraySize, dataType arraySize)
 
 #### Passing String
 
-![pass string](/image/pass-string.png)
+![pass string](/image/pass-string.PNG)
 
 1. Copy Value 
 
@@ -2022,6 +2137,77 @@ returnType functionName(dataType arrayName[arraySize, dataType arraySize)
    ![pass string_view](/image/pass-string_view.png)
 
 ![general rule for passing parameters](/image/general-rule-for-passing-parameters.png)
+
+### Function return
+
+The `void` keyword, used in the previous examples, indicates that the function should not return a value. If you want the function to return a value, you can use a data type (such as `int`, `string`, etc.) instead of `void`, and use the `return` keyword inside the function.
+
+#### return by value
+
+In modern compilers, return by value is commonly optimized out by the compiler when possible and the function is modified behind your back to return by reference, avoiding unnecessary copies!
+
+```c++
+// program to add two numbers using a function
+#include <iostream>
+
+// declaring a function
+int add(int a, int b)
+{
+    return (a + b);
+}
+
+int main() 
+{
+    int sum;
+    // calling the function and storing
+    // the returned value in sum
+    sum = add(100, 78);
+    std::cout << "100 + 78 = " << sum << std::endl;
+    return 0;
+}
+```
+
+![cpp-function-return-statement](/image/cpp-function-return-statement.webp)
+
+#### return by refinance
+
+In C++ Programming, not only can you pass values by reference to a [function](https://www.programiz.com/cpp-programming/function) but you can also return a value by reference. 
+
+```c++
+#include <iostream>
+// global variable
+int num;
+// function declaration
+int& test();
+
+int main() 
+{
+  // assign 5 to num variable
+  // equivalent to num = 5;
+  test() = 5;
+  cout << num;
+  return 0;
+}
+// function definition
+// returns the address of num variable
+int& test() 
+{
+  return num;
+}
+```
+
+#### return by pointer 
+
+C++ allows you to return a pointer from a function. To do so, you would have to declare a function returning a pointer.
+
+```c++
+int * myFunction() 
+{
+   .
+   .
+   .
+}
+```
 
 ### constexpr Functions
 
@@ -2111,9 +2297,549 @@ Properties of Command Line Arguments:
 5. `argv[0]` holds the name of the program.
 6. `argv[1]` points to the first command line argument and `argv[n]` points last argument.
 
+### std::optional
+
+`std:optional` - a new helper type added in C++17. It’s a wrapper for your type and a flag that indicates if the value is initialized or not. `std::optional` was added in C++17 and brings a lot of experience from `boost::optional` that was available for many years. Since C++17 you can just `#include <optional>` and use the type. 
+
+```c++
+//Declare and Initialization
+std::optional<Data_Type> Variable_Name{Value} ;
+```
 
 
 
+Usually, you can use an optional wrapper in the following scenarios:
+
+- If you want to represent a nullable type nicely.
+
+  - Rather than using unique values (like -1, nullptr, NO_VALUE or something)
+  - For example, a user’s middle name is optional. You could assume that an empty string would work here, but knowing if a user entered something or not might be important. With std::optional<std::string> you get more information.
+
+- Return a result of some computation (processing) that fails to produce a value and is not an error.
+
+  For example, finding an element in a dictionary: if there’s no element under a key it’s not an error, but we need to handle the situation.
+
+- To perform lazy-loading of resources.
+
+  For example, a resource type has no default constructor, and the construction is substantial. So you can define it as std::optional<Resource> (and you can pass it around the system), and then load only if needed later.
+
+- To pass optional parameters into functions.
+
+```c++
+std::optional<std::string> UI::FindUserNick()
+{
+    if (nick_available)
+    {
+        return { mStrNickName };
+    }
+    return std::nullopt; // same as return { };
+}
+
+// use:
+std::optional<std::string> UserNick = UI->FindUserNick();
+if (UserNick)
+{
+    Show(*UserNick);
+}
+```
+
+### Function Overloading
+
+Function overloading is a feature of object oriented programming where two or more functions can have the same name but different parameters. When a function name is overloaded with different jobs it is called Function Overloading. In Function Overloading “Function” name should be the same and the arguments should be different.
+
+Parameter Differences:
+
+1. Order 
+2. Number
+3. Types
+
+```c++
+
+#include <iostream>
+ 
+void print(int i) {
+  std::cout << " Here is int " << i << std::endl;
+}
+void print(double  f) {
+  std::cout << " Here is float " << f << std::endl;
+}
+void print(char const *c) {
+  std::cout << " Here is char* " << c << std::endl;
+}
+ 
+int main() {
+  print(10);
+  print(10.10);
+  print("ten");
+  return 0;
+}
+
+/* Output
+* Here is int 10 
+* Here is float 10.1 
+* Here is char* ten
+*/
+```
+
+How  Function Overloading works?
+
+- Exact match
+
+   (Function name and Parameter)
+
+- If a not exact match is found
+
+  1. Char, Unsigned char, and short are promoted to an int.
+  2. Float is promoted to double
+
+- If no match found:
+
+  C++ tries to find a match through the standard conversion.
+
+- ELSE ERROR 
+
+### Lambda Function
+
+A mechanism to set up anonymous functions (without names). Once we have them set up, we can either give them names and call them , or we can even get them to do things directly.
+
+```c++
+// Declaring
+[ capture clause ] (parameters) -> return-type  
+{   
+   definition of method   
+};
+
+// Assigning
+auto Call_Name [ capture clause ] (parameters) -> return-type  
+{   
+   definition of method   
+};
+
+// Calling
+Call_Name(parameters) ; 
+
+// Calling Directly After Definition
+[ capture clause ] (parameters) -> return-type  
+{   
+   definition of method   
+}();
+```
+
+#### Capture List 
+
+A lambda can introduce new variables in its body (in **C++14**), and it can also access, or *capture*, variables from the surrounding scope. A lambda begins with the capture clause. It specifies which variables are captured, and whether the capture is by value or by reference. Variables that have the ampersand (`&`) prefix are accessed by reference and variables that don't have it are accessed by value. An empty capture clause, `[ ]`, indicates that the body of the lambda expression accesses no variables in the enclosing scope. You can use a capture-default mode to indicate how to capture any outside variables referenced in the lambda body: `[&]` means all variables that you refer to are captured by reference, and `[=]` means they're captured by value. You can use a default capture mode, and then specify the opposite mode explicitly for specific variables. For example, if a lambda body accesses the external variable `total` by reference and the external variable `factor` by value, then the following capture clauses are equivalent:
+
+```c++
+[&total, factor]
+[factor, &total]
+[&, factor]
+[=, &total]
+```
+
+Only variables that are mentioned in the lambda body are captured when a capture-default is used. If a capture clause includes a capture-default `&`, then no identifier in a capture of that capture clause can have the form `&identifier`. Likewise, if the capture clause includes a capture-default `=`, then no capture of that capture clause can have the form `=identifier`. An identifier or **this** can't appear more than once in a capture clause. 
+
+> Values captured by value can't be modified in the body of the lambda function by default. There are ways around this and we'll learn about them later. 
+
+![lambda_function](/image/lambda_function.png)
+
+### Static Variables in Function 
+
+When a variable is declared as static, space for **it gets allocated for the lifetime of the program**. Even if the function is called multiple times, space for the static variable is allocated only once and the value of variable in the previous call gets carried through the next function call. 
+
+**Global variable vs Static variable**
+
+- Both global and static variables have static storage duration. They live throughout the entire lifetime of the program.
+- Static variables are scoped to the function in which they are declared and used. If you try to access them outside that function, you’ll get a compiler error.
+- Global variables are scoped to the global scope of the file where they are declared. They are accessible and usable through out the entire file.
+
+### Inline Function 
+
+When the program executes the function call instruction the CPU stores the memory address of the instruction following the function call, copies the arguments of the function on the stack and finally transfers control to the specified function. The CPU then executes the function code, stores the function return value in a predefined memory location/register and returns control to the calling function. This can become overhead if the execution time of function is less than the switching time from the caller function to called function (callee). For functions that are large and/or perform complex tasks, the overhead of the function call is usually insignificant compared to the amount of time the function takes to run. However, for small, commonly-used functions, the time needed to make the function call is often a lot more than the time needed to actually execute the function’s code. This overhead occurs for small functions because execution time of small function is less than the switching time.
+
+C++ provides an inline functions to reduce the function call overhead. Inline function is a function that is expanded in line when it is called. When the inline function is called whole code of the inline function gets inserted or substituted at the point of inline function call. This substitution is performed by the C++ compiler at compile time. Inline function may increase efficiency if it is small.
+
+```c++
+inline returnType functionName (parameter1, parameter2,...) 
+{
+    // function body   
+    
+    return returnData
+}
+```
+
+- Inline functions can increase the size of your application binary.
+- It is recommended to use them for short, frequently used functions.
+- The programmer (You), should weigh in the benefits against the downsides of inlining your functions.
+- Usually only functions of a few lines of code and simple logic, like our max function should be inlined.
+- Marking your function as inline is just a suggestion to the compiler. The compiler might agree and inline your function or just ignore you.
+
+### Recursion Function 
+
+A function that calls itself is known as a recursive function. And, this technique is known as recursion. The recursion continues until some condition is met. To prevent infinite recursion, `if...else statement` (or similar approach) can be used where one branch makes the recursive call and the other doesn't.
+
+![cpp-function-recursion-working](/image/cpp-function-recursion-working.webp)
+
+Example: Factorial of a Number Using Recursion
+
+```c++
+// Factorial of n = 1*2*3*...*n
+
+#include <iostream>
+
+int factorial(int);
+
+int main() 
+{
+    int n, result;
+
+    std::cout << "Enter a non-negative number: ";
+    std::cin >> n;
+
+    result = factorial(n);
+    std::cout << "Factorial of " << n << " = " << result;
+    return 0;
+}
+
+int factorial(int n) 
+{
+    if (n > 1) 
+    {
+        return n * factorial(n - 1);
+    } 
+    else 
+    {
+        return 1;
+    }
+}
+```
+
+![cpp-function-recursion-example](/image/cpp-function-recursion-example.webp)
+
+**Advantages of Recursion:**
+
+1. It makes our code shorter and cleaner.
+2. Recursion is required in problems concerning data structures and advanced algorithms, such as Graph and Tree Traversal.
+
+**Disadvantages of Recursion:**
+
+1. It takes a lot of stack space compared to an iterative program.
+2. It uses more processor time.
+3. It can be more difficult to debug compared to an equivalent iterative program.
+
+### Function Templates
+
+Templates are powerful features of C++ which allows us to write generic programs. We can create a single function to work with different data types by using a template, Instead of function overload.
+
+```c++
+// Definition by value
+template <typename T>
+T Function_Name(T parameter1, T parameter2, ...) 
+{
+    // code
+}
+
+// Definition by reference 
+template <typename T>
+T& Function_Name(T& parameter1, T& parameter2, ...) 
+{
+    // code
+}
+
+// Definition by pointer  
+template <typename T>
+T* Function_Name(T* parameter1, T* parameter2, ...) 
+{
+    // code
+}
+
+// Calling with deduction
+Function_Name(parameter1, parameter2,...);
+
+// Calling with explicitly
+Function_Name<dataType>(parameter1, parameter2,...);
+
+```
+
+- Function templates are just blueprints. They’re not real C++ code consumed by the compiler. The compiler generates real C++ code by looking at the arguments you call your function template with.
+
+- The real C++ function generated by the compiler is called a template instance.
+
+- A template instance will be reused when a similar function call (argument types) is issued. No duplicates are generated by the compiler.
+
+- Real function declarations and definitions, aka template instances are created when you call the function with arguments. 
+
+- If the template parameters are of the same type (T,T), then the arguments you call the function with must also match, otherwise you get a compiler error.
+
+- The arguments passed to a function template must support the operations that are done in the body of the function.
+
+- [cppinsights.io](cppinsights.io) that can show you template instantiations. You can even use the debugger to infer that information from the activation record of a template function
+
+  ![function_tempelet](/image/function_tempelet.png)
+
+- For the template arguments must be of the same type.
+
+> Template instances won’t always do what you want. A good example is when you call our maximum function with pointers. DISASTER!
+
+#### Template Specialization
+
+Function Templates aren't real C++ code, they're blueprints the compiler uses to generate actual C++ code in template instances. Template specializations however are real C++ code. If multiple function template specialization definitions show up in multiple files, you'll get redefinition errors.
+
+```c++
+// Definition with template specialization 
+template <> 
+return_Type Function_Name<Data_Type> (Data_Type parameter1, Data_Type parameter2, ...) 
+{
+    // code
+}
+```
+
+#### Template Overloading 
+
+![Template_Overloading](/image/Template_Overloading.png)
+
+C++ treats specialization and overloads very differently. This is best explained with an example. 
+
+```c++
+template <typename T> void foo(T);
+template <typename T> void foo(T*); // overload of foo(T)
+template <>           void foo<int>(int*); // specialisation of foo(T*)
+
+foo(new int); // calls foo<int>(int*);
+```
+
+The compiler does overload resolution before it even looks at specializations. So, in both cases, overload resolution chooses `foo(T*)`. However, only in the first case does it find `foo<int*>(int*)` because in the second case the `int*` specialization is a specialization of `foo(T)`, not `foo(T*)`. 
+
+> overload when you can, specialize when you need to. 
+
+#### Template with Multiple Parameters 
+
+ ```c++
+template <typename return_Type, typename T, typename P> 
+return_Type Function_Name (T parameter1, P parameter2, ...) 
+{
+    // code
+}
+ ```
+
+![multiple_template](/image/multiple_template.png)
+
+> We can use `auto` to deduced the `return` type, and the function definition must be before the `main` function.
+
+#### Decltype with auto 
+
+The `decltype` type specifier yields the type of a specified expression. The `decltype` type specifier, together with the `auto` keyword, is useful primarily to developers who write template libraries. Use `auto` and `decltype` to declare a template function whose return type depends on the types of its template arguments. Or, use `auto` and `decltype` to declare a template function that wraps a call to another function, and then returns the return type of the wrapped function. 
+
+```c++
+decltype( expression ) // its return the type of the expression parameter 
+```
+
+In C++14, you can use `decltype(auto)` with no trailing return type to declare a template function whose return type depends on the types of its template arguments.
+
+In C++11, you can use the `decltype` type specifier on a trailing return type, together with the `auto` keyword, to declare a template function whose return type depends on the types of its template arguments. For example, consider the following code example in which the return type of the template function depends on the types of the template arguments. In the code example, the *UNKNOWN* placeholder indicates that the return type cannot be specified.
+
+The introduction of the `decltype` type specifier enables a developer to obtain the type of the expression that the template function returns. Use the *alternative function declaration syntax* that is shown later, the `auto` keyword, and the `decltype` type specifier to declare a *late-specified* return type. The late-specified return type is determined when the declaration is compiled, instead of when it is coded. 
+
+```c++
+// C++11
+template<typename T, typename P>
+auto Function_Name (T a, P b) -> decltype(expression)
+{
+   // code
+}
+
+// C++14
+template<typename T, typename P>
+decltype(auto) Function_Name (T a, P b) 
+{
+   // code
+}
+```
+
+![auto_decltype](/image/auto_decltype.png)
+
+#### Non Type Template Parameter 
+
+A template non-type parameter is a template parameter where the type of the parameter is predefined and is substituted for a constexpr value passed in as an argument. 
+
+```c++
+template<Data_Type T, typename P>
+Return_Type Function_Name (T a) 
+{
+   // code
+}
+```
+
+A non-type parameter can be any of the following types:
+
+- An integral type
+- An enumeration type
+- A pointer or reference to a class object
+- A pointer or reference to a function
+- A pointer or reference to a class member function
+- std::nullptr_t
+- A floating point type (since C++20)
+
+> In c++17 and below, only `int` like types could be used as non type template parameter.
+
+#### auto Function Template
+
+ ```c++
+auto Function_Name (auto parameter1, auto parameter2, ..)
+{
+    // code 
+    // its return the largest type 
+}
+ ```
+
+#### Template Parameter for Lambda 
+
+```c++
+auto Function_Name = [] <typename T> (T parameter1, T parameter2, ..)
+{
+    // code 
+    // pervent passing different parameter 
+}
+```
+
+#### C++20 Standard Concepts
+
+The concepts library provides definitions of fundamental library concepts that can be used to perform compile-time validation of template arguments and perform function dispatch based on properties of types. These concepts provide a foundation for equational reasoning in programs.
+
+Most concepts in the standard library impose both syntactic and semantic requirements. It is said that a standard concept is *satisfied* if its syntactic requirements are met, and is *modeled* if it is satisfied and its semantic requirements (if any) are also met.
+
+![C++20_Concepts](/image/C++20_Concepts.png)
+
+```c++
+// Syntax 1
+template <typename T>
+requires std::C++_Concept <T>
+T Function_Name (T a, T b)
+{
+    // code
+}
+
+// Syntax 1 by using a type trait 
+template <typename T>
+requires std::Type_Trait <T> 
+T Function_Name (T a, T b)
+{
+    // code
+}
+
+// Syntax 2
+template <std::C++_Concept T>
+T Function_Name (T a, T b)
+{
+    // code
+}
+
+// Syntax 3
+auto Function_Name (std::C++_Concept auto a, std::C++_Concept auto b)
+{
+    // code
+}
+
+template <typename T>
+T Function_Name (T a, T b) requires std::C++_Concept <T>
+{
+    // code
+}
+```
+
+#### C++20 Custom Concepts 
+
+We can build our concepts for custom usage. It can use like the **C++20 Standard Concepts**.
+
+The requires clause can take in four kinds of requirements :
+
+1. Simple Requirements
+
+   ```c++
+   // Simple requirements
+   template <typename T> 
+   concept Concept_Name = requires (T a, ..)
+   {
+        expression // check for valid condition 
+    };
+   ```
+
+2. Nested Requirements
+
+   ```c++
+   // Nested Requirements
+   template <typename T> 
+   concept Concept_Name = requires (T a, ..)
+   {
+       expression // check for valid condition 
+       requires expression // check if the expression is true
+    };
+   ```
+
+3. Compound Requirements
+
+   ```c++
+   // Compound Requirements
+   template <typename T> 
+   concept Concept_Name = requires (T a, ..)
+   {
+       // check for valid condition and the result is valid for second condition 
+       expression -> std::C++_Concept 
+    };
+   ```
+
+   We can use `||` and `&&` to compound the concept 
+
+   ```c++
+   // Example 
+   #include <iostream>
+   #include <concepts>
+   
+   template <typename T>
+   concept TinyType = requires ( T t)
+   {
+   	sizeof(T) <=4; // Simple requirement
+   	requires sizeof(T) <= 4; // Nested requirement
+   };
+   
+   template <typename T>
+   //requires std::integral<T> || std::floating_point<T> -> OR operator
+   //requires std::integral<T> && TinyType<T>			 -> AND operator
+   requires std::integral<T> && requires ( T t)
+   {
+   	sizeof(T) <=4; // Simple requirement
+   	requires sizeof(T) <= 4; // Nested requirement
+   }
+   T add(T a, T b)
+   {
+       return a + b;
+   }
+   
+   int main()
+   {
+       long long int x{7};
+       long long int y{5};
+   
+       add(x,y);
+       return 0;
+   }
+   ```
+
+4. Type Requirements
+
+   This's out of scope for now. 
+
+> We can use Concepts with `auto` keyword.
+>
+> ```c++
+> std::integral auto add (std::integral auto a,std::integral auto b)
+> {
+> 	return a + b;
+> } 
+> // or 
+> std::floating_point auto x = add(5,8);
+> ```
+
+ 
 
 
 
